@@ -6,21 +6,11 @@
 /*   By: relamine <relamine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 06:36:11 by relamine          #+#    #+#             */
-/*   Updated: 2024/06/12 19:12:03 by relamine         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:20:53 by relamine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 static int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -44,7 +34,7 @@ int	ft_parsing(int argc, char **argv)
 		{
 			if (argc > 2)
 			{
-				write(1,"Enter name without Coordinates", ft_strlen("Enter name without Coordinates"));
+				write(1,"Enter name without Coordinates", 30);
 				return (0);
 			}
 			return (1);
@@ -53,19 +43,20 @@ int	ft_parsing(int argc, char **argv)
 		{
 			if (argc != 4)
 			{
-				write(1,"Enter two Coordinates x and y", ft_strlen("Enter two Coordinates x and y"));
+				write(1,"Enter two Coordinates x and y", 29);
 				return (0);
 			}
 			return (2);
 		}	
 	}
-	write(1,"enter < Mandelbrotset > or < Juliaset >", ft_strlen("enter < Mandelbrotset > or < Juliaset >"));
+	write(1,"enter < Mandelbrotset > or < Juliaset >", 39);
 	return (0);
 }
-
-
-#include <stdio.h>
-
+static void ft_exit()
+{
+	write(1,"incorrect Coordinates", 21);
+	exit(1);
+}
 static void ft_check_parcing(const char *str, int *bol)
 {
 	char		*s;
@@ -73,22 +64,22 @@ static void ft_check_parcing(const char *str, int *bol)
 
 	i = 0;
 	if (*str == '\0' || (*str >= 9 && *str <= 13) || *str == 32)
-		exit(1);
+		ft_exit();
 	s = (char *)str;
 	if (*s == '-' || *s == '+')
 		i++;
 	if (!s[i])
-		exit(1);
+		ft_exit();
 	while (s[i])
 	{
-		if (s[0] == '.'|| (s[i] != '.' && !(s[i] >= 48 && s[i] <= 57)))
-			exit(1);
+		if (s[0] == '.'|| (s[i] != '.' && !(s[i] >= 48 && s[i] <= 57)) || ((s[i - 1] == '-' || s[i - 1] == '+') && s[i] == '.'))
+			ft_exit();
 		if (s[i] == '.')
 			*bol = *bol + 1;
 		if (*bol > 1)
-			exit(1);
+			ft_exit();
 		if (s[i] == '.' && s[i + 1] == '\0')
-			exit(1);
+			ft_exit();
 		i++;
 	}
 	*bol = 0;

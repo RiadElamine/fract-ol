@@ -1,7 +1,7 @@
 
 NAMEC = fractol
 
-SRCC = main.c parcing.c
+SRCC = main.c parcing.c mlx.c fractal.c
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 RM = rm -f

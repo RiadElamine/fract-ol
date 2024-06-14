@@ -6,7 +6,7 @@
 /*   By: relamine <relamine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:24:13 by relamine          #+#    #+#             */
-/*   Updated: 2024/06/12 16:38:34 by relamine         ###   ########.fr       */
+/*   Updated: 2024/06/14 02:36:08 by relamine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,23 @@ typedef struct    s_data {
     int        bits_per_pixel;
     int        line_length;
     int        endian;
+	void    *mlx;
+    void    *mlx_win;
+    int Ci;
+    int Cj;
+    int iteration;
+    int max_iteration;
+    double tmp_x;
+    double x4;
+    double y4;
+    double x;
+    double y;
+	int s;
+	double	zoom;
+	double ofsx;
+	double ofsy;
 }        t_data;
+
 
 typedef struct    s_vatod {
 	int			signe;
@@ -37,8 +53,21 @@ typedef struct    s_vatod {
 
 
 
+enum {
+	ON_DESTROY = 17,
+	scroll_up = 4,
+	scroll_down = 5
+};
+
+
 
 int	ft_parsing(int argc, char **argv);
 double	ft_atod(char *str);
+void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
+double map_repere(double x, double in_min, double in_max, double out_min, double out_max);
+int ft_close(t_data *graph);
+int	key_hook(int keycode,t_data *graph);
+void fractal(t_data *graph);
+
 
 #endif
