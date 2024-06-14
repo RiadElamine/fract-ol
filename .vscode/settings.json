@@ -57,14 +57,15 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "mlx.h": "c",
-    "stdio.h": "c",
-    "math.h": "c",
-    "stdlib.h": "c",
-    "algorithm": "c",
-    "chrono": "c",
-    "limits": "c",
-    "ratio": "c",
-    "fractol.h": "c"
-  }
+	"mlx.h": "c",
+	"stdio.h": "c",
+	"math.h": "c",
+	"stdlib.h": "c",
+	"algorithm": "c",
+	"chrono": "c",
+	"limits": "c",
+	"ratio": "c",
+	"fractol.h": "c",
+	"__locale": "c"
+}
 }

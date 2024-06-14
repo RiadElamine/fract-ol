@@ -6,7 +6,7 @@
 /*   By: relamine <relamine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 06:36:11 by relamine          #+#    #+#             */
-/*   Updated: 2024/06/13 21:20:53 by relamine         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:33:58 by relamine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,36 @@ int	ft_parsing(int argc, char **argv)
 {
 	if (argc >= 2)
 	{
-		if(ft_strcmp(argv[1], "Mandelbrotset") == 0)
+		if (ft_strcmp(argv[1], "Mandelbrotset") == 0)
 		{
 			if (argc > 2)
 			{
-				write(1,"Enter name without Coordinates", 30);
+				write(1, "Enter name without Coordinates", 30);
 				return (0);
 			}
 			return (1);
 		}
-		else if(ft_strcmp(argv[1], "Juliaset") == 0)
+		else if (ft_strcmp(argv[1], "Juliaset") == 0)
 		{
 			if (argc != 4)
 			{
-				write(1,"Enter two Coordinates x and y", 29);
+				write(1, "Enter two Coordinates x and y", 29);
 				return (0);
 			}
 			return (2);
-		}	
+		}
 	}
-	write(1,"enter < Mandelbrotset > or < Juliaset >", 39);
+	write(1, "enter < Mandelbrotset > or < Juliaset >", 39);
 	return (0);
 }
-static void ft_exit()
+
+static void	ft_exit(void)
 {
-	write(1,"incorrect Coordinates", 21);
+	write(1, "incorrect Coordinates", 21);
 	exit(1);
 }
-static void ft_check_parcing(const char *str, int *bol)
+
+static void	ft_check_parcing(const char *str, int *bol)
 {
 	char		*s;
 	int			i;
@@ -72,7 +74,8 @@ static void ft_check_parcing(const char *str, int *bol)
 		ft_exit();
 	while (s[i])
 	{
-		if (s[0] == '.'|| (s[i] != '.' && !(s[i] >= 48 && s[i] <= 57)) || ((s[i - 1] == '-' || s[i - 1] == '+') && s[i] == '.'))
+		if (s[0] == '.' || (s[i] != '.' && !(s[i] >= 48 && s[i] <= 57))
+			|| ((s[i - 1] == '-' || s[i - 1] == '+') && s[i] == '.'))
 			ft_exit();
 		if (s[i] == '.')
 			*bol = *bol + 1;
@@ -87,7 +90,7 @@ static void ft_check_parcing(const char *str, int *bol)
 
 double	ft_atod(char *str)
 {
-	t_vatod a;
+	t_vatod	a;
 
 	a.res = 0;
 	a.signe = 1;
@@ -111,5 +114,5 @@ double	ft_atod(char *str)
 		}
 		str++;
 	}
-	return ((a.res + (a.dot * pow(10, -a.len)))* a.signe);
+	return ((a.res + (a.dot * pow(10, -a.len))) * a.signe);
 }
