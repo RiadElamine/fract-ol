@@ -8,12 +8,12 @@ RM = rm -f
 
 OBJ = $(SRCC:%.c=%.o)
 
-%.o : %.c
+%.o : %.c fractol.h
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all : $(NAMEC) 
 
-$(NAMEC) : $(OBJ) fractol.h
+$(NAMEC) : $(OBJ)
 	$(CC) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAMEC)
 
 clean:
